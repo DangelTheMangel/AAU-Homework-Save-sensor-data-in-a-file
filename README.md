@@ -9,6 +9,9 @@ Try keeping your phone in a vertical position on a table, with some soft surface
 Upload the whole project on your GitHub repositoy, and upload a link to it here!
 
 ## Collected data
-
+The collected data are:
+AAU-Homework-Save-sensor-data-in-a-file/collected data/
 
 ## build app
+The apps build are here  [here](AndroidBuild/gyro.apk):
+AAU-Homework-Save-sensor-data-in-a-file/AndroidBuild/gyro.apk
