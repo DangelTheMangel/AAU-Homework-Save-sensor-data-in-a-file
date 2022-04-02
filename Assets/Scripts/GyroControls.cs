@@ -1,44 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 //inspired from: https://www.youtube.com/watch?v=P5JxTfCAOXo&ab_channel=N3KEN
 /// <summary>
 /// this class take get the gyro data
 /// </summary>
 public class GyroControls : MonoBehaviour
 {
-    private bool gyroEnable = false;
-    private Gyroscope gyro;
-    public GameObject Object;
-    // Start is called before the first frame update
-    void Start()
+    UnityEngine.InputSystem.Gyroscope gyro;
+    SensorControlls sensorControlls;
+
+    private void Awake()
     {
-        gyroEnable = enableGyro();
+        sensorControlls = new SensorControlls();
+    }
+    private void Start()
+    {
+        InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        sensorControlls.Default.Enable();
+
+
     }
 
-    private bool enableGyro() {
-        if (SystemInfo.supportsGyroscope)
-        {
-            gyro = Input.gyro;
-            gyro.enabled = true;
-            return gyro.enabled;
-        }
-        else {
-            return false;
-        }
+    public Vector3 readValue() {
+        return sensorControlls.Default.Gyro.ReadValue<Vector3>();
     }
-    /// <summary>
-    /// get the instance gyro
-    /// </summary>
-    /// <returns></returns>
-    public Gyroscope getGyro() {
-        return gyro;
-    }
-    /// <summary>
-    /// return if gyro have been enable
-    /// </summary>
-    /// <returns></returns>
-    public bool areGyroEnable() {
-        return gyroEnable;
+    public bool isEnable() {
+        return UnityEngine.InputSystem.Gyroscope.current.enabled;
     }
 }
