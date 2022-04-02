@@ -38,14 +38,13 @@ public class CSVWriter : MonoBehaviour
     /// <param name="data"></param>
     public void writeCSVFromData(List<SensorData> data) {
         for (int i = 0; i < data.Count; i++) {
-            Quaternion r = data[i].rotation;
+            Vector3 r = data[i].rotation;
             string input;
             float xValue = r.x;
             float yValue = r.y;
             float zValue = r.z;
-            float wValue = r.w;
             string timeValue = data[i].time;
-            input = xValue + "," + yValue + "," + zValue + "," + wValue + "," + timeValue;
+            input = xValue + "," + yValue + "," + zValue + "," + timeValue;
             WriteCSV(input);
         }
     }

@@ -52,7 +52,7 @@ public class DataCollectorScript : MonoBehaviour
         if (collectingData  && timer < endTime)
         {
             timer += Time.deltaTime;
-            SensorData data = new SensorData(gyroControls.getGyro().attitude);
+            SensorData data = new SensorData(gyroControls.readValue());
             dataCollected.Add(data);
         }
         else if(collectingData && timer >= endTime) {
@@ -98,10 +98,10 @@ public class DataCollectorScript : MonoBehaviour
 /// </summary>
 [Serializable]
 public class SensorData {
-    public Quaternion rotation;
+    public Vector3 rotation;
     public string time;
 
-    public SensorData(Quaternion rotation) {
+    public SensorData(Vector3 rotation) {
         this.rotation = rotation;
         long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         time = DateTime.Now.ToString() + " m:" + milliseconds.ToString();
